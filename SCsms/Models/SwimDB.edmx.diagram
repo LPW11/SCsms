@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c78c358c28794f40b4d04871182bdfb7" Name="Diagram1">
+        <EntityTypeShape EntityType="SCsmsModel.Athletes" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCsmsModel.Events" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCsmsModel.Results" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCsmsModel.Users" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="SCsmsModel.FK__Athletes__EventI__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="SCsmsModel.FK__Results__Athlete__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="SCsmsModel.FK__Results__EventID__5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

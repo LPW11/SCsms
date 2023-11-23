@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SCsmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Athletes">
+          <Key>
+            <PropertyRef Name="AthleteID" />
+          </Key>
+          <Property Name="AthleteID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="MaxParticipants" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="ResultID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="AthleteID" Type="int" />
+          <Property Name="ResultTime" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Athletes__EventI__4E88ABD4">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Athletes" Type="Self.Athletes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Athletes">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__Athlete__52593CB8">
+          <End Role="Athletes" Type="Self.Athletes" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Athletes">
+              <PropertyRef Name="AthleteID" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="AthleteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__EventID__5165187F">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SCsmsModelStoreContainer">
+          <EntitySet Name="Athletes" EntityType="Self.Athletes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Athletes__EventI__4E88ABD4" Association="Self.FK__Athletes__EventI__4E88ABD4">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Athletes" EntitySet="Athletes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__Athlete__52593CB8" Association="Self.FK__Results__Athlete__52593CB8">
+            <End Role="Athletes" EntitySet="Athletes" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__EventID__5165187F" Association="Self.FK__Results__EventID__5165187F">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SCsmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Athletes">
+          <Key>
+            <PropertyRef Name="AthleteID" />
+          </Key>
+          <Property Name="AthleteID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Athletes__EventI__4E88ABD4" FromRole="Athletes" ToRole="Events" />
+          <NavigationProperty Name="Results" Relationship="Self.FK__Results__Athlete__52593CB8" FromRole="Athletes" ToRole="Results" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="EventName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MaxParticipants" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Athletes" Relationship="Self.FK__Athletes__EventI__4E88ABD4" FromRole="Events" ToRole="Athletes" />
+          <NavigationProperty Name="Results" Relationship="Self.FK__Results__EventID__5165187F" FromRole="Events" ToRole="Results" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="ResultID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="AthleteID" Type="Int32" />
+          <Property Name="ResultTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="Athletes" Relationship="Self.FK__Results__Athlete__52593CB8" FromRole="Results" ToRole="Athletes" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Results__EventID__5165187F" FromRole="Results" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Athletes__EventI__4E88ABD4">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Athletes" Type="Self.Athletes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Athletes">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__Athlete__52593CB8">
+          <End Role="Athletes" Type="Self.Athletes" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Athletes">
+              <PropertyRef Name="AthleteID" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="AthleteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Results__EventID__5165187F">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SCsmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Athletes" EntityType="Self.Athletes" />
+          <EntitySet Name="Events" EntityType="Self.Events" />
+          <EntitySet Name="Results" EntityType="Self.Results" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Athletes__EventI__4E88ABD4" Association="Self.FK__Athletes__EventI__4E88ABD4">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Athletes" EntitySet="Athletes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__Athlete__52593CB8" Association="Self.FK__Results__Athlete__52593CB8">
+            <End Role="Athletes" EntitySet="Athletes" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Results__EventID__5165187F" Association="Self.FK__Results__EventID__5165187F">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SCsmsModelStoreContainer" CdmEntityContainer="SCsmsEntities">
+          <EntitySetMapping Name="Athletes">
+            <EntityTypeMapping TypeName="SCsmsModel.Athletes">
+              <MappingFragment StoreEntitySet="Athletes">
+                <ScalarProperty Name="AthleteID" ColumnName="AthleteID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="SCsmsModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="MaxParticipants" ColumnName="MaxParticipants" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="SCsmsModel.Results">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="AthleteID" ColumnName="AthleteID" />
+                <ScalarProperty Name="ResultTime" ColumnName="ResultTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SCsmsModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
