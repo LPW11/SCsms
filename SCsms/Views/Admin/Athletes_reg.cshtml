@@ -1,0 +1,47 @@
+﻿@model List<SCsms.Models.Athletes>
+
+@{
+    ViewBag.Title = "运动员报名查询";
+    Layout = "~/Views/Shared/_BackAdmin.cshtml";
+}
+
+
+<h2>运动员报名查询</h2>
+
+
+<div style="margin-top: 50px; text-align: center;">
+    <table style="border-collapse: collapse; width: 100%;" class="table table-striped">
+        @if (Model != null)
+        {
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">运动员编号</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">比赛编号</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">运动员名字</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">运动员性别</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var athlete in Model)
+                {
+                    <tr>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">@athlete.AthleteID</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">@athlete.EventID</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">@athlete.UserName</td>
+                        <td style="border: 1px solid #dee2e6; padding: 10px;">@athlete.Sex</td>
+
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+
+        }
+    </table>
+</div>
+
+<script>
+
+</script>
+

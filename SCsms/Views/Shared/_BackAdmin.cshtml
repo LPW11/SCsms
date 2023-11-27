@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    @{
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- Bootstrap JS (包括 Popper.js) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+
+        .container {
+            display: flex;
+            flex: 1;
+            padding-right: 0;
+            padding-left: 0;
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .card-body
+        {
+            text-align:center;
+        }
+
+        .accordion
+        {
+            width:250px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-dark">
+        <a class="navbar-brand text-white" href="#">Navbar</a>
+    </nav>
+
+    <div class="container">
+        <div class="accordion col-md-3" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            信息查询
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/EventsIndex">比赛信息查询</a>
+                    </div>
+                </div>
+                <hr class="my-2 text-white">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/Athletes_reg">运动员报名查询</a>
+                    </div>
+                </div>
+                <hr class="my-2 text-white">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/AthletesIndex">运动员成绩查询</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            信息添加
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/EventsAdd">比赛信息添加</a>
+                    </div>
+                </div>
+                <hr class="my-2 text-white">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/AthletesAdd">运动员信息添加</a>
+                    </div>
+                </div>
+                <hr class="my-2 text-white">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/ResultsAdd">运动员成绩添加</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            信息修改与删除
+                        </button>
+                    </h2>
+                </div>
+                <hr class="my-2 text-white">
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/Events_UD">比赛修改和删除</a>
+                    </div>
+                </div>
+                <hr class="my-2 text-white">
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/Athletes_UD">运动员修改和删除</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" id="customCollapseBtn" aria-expanded="false" data-target="#collapseFour" aria-controls="collapseFour">
+                            用户管理
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/Account_inq">账户查询与修改</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" id="customCollapseBtnModify" aria-expanded="false" data-target="#collapseFourModify" aria-controls="collapseFourModify">
+                            用户管理
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseFourModify" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <a href="/Admin/AccountsAdd">账户添加</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="main-content col-md-10 offset-md-2">
+            <!-- 主要内容区域 -->
+            <h1>Welcome to the Admin Dashboard</h1>
+            <!-- 添加其他内容 -->
+            @RenderBody()
+        </div>
+    </div>
+
+    <script>
+        // 手动触发折叠行为
+        $("#customCollapseBtn").on("click", function () {
+            $("#collapseFour").collapse("toggle");
+        });
+
+        // 手动触发折叠行为
+        $("#customCollapseBtnModify").on("click", function () {
+            $("#collapseFourModify").collapse("toggle");
+        });
+    </script>
+
+
+</body>
+
+</html>

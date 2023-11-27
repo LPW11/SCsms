@@ -25,6 +25,7 @@ namespace SCsms.Models
         public string EventName { get; set; }
         public System.DateTime EventDate { get; set; }
         public int MaxParticipants { get; set; }
+        public string EventGroup { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Athletes> Athletes { get; set; }

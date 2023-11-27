@@ -1,0 +1,50 @@
+﻿@model List<SCsms.Models.Users>
+
+@{
+    ViewBag.Title = "账户查询";
+    Layout = "~/Views/Shared/_BackAdmin.cshtml";
+}
+
+
+<h2>账户查询</h2>
+
+
+<div style="margin-top: 50px; text-align: center;">
+    <table style="border-collapse: collapse; width: 100%;" class="table table-striped">
+        @if (Model != null)
+        {
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">用户编号</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">用户名</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">密码</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">账户类型</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">账户修改</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                <tr>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@user.UserID</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@user.UserName</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@user.Password</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@user.UserType</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;"><input type="button" onclick="redirectToUpdate('@user.UserID')" class="btn btn-primary" value="修改" /></td>
+                </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+
+        }
+    </table>
+</div>
+
+<script>
+    function redirectToUpdate(UserID) {
+        window.location.replace('/Admin/AccountUpdate?UserID=' + encodeURIComponent(UserID));
+    }
+
+</script>

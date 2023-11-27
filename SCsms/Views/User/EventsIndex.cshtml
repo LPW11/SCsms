@@ -1,0 +1,70 @@
+﻿@model List<SCsms.Models.Events>
+
+@{
+    ViewBag.Title = "游泳比赛信息管理";
+    Layout = "~/Views/Shared/_FrontUser.cshtml";
+}
+
+<h2>游泳比赛信息展示</h2>
+
+
+<div style="margin-top: 50px; text-align: center;">
+    <table style="border-collapse: collapse; width: 100%;" class="table table-striped">
+        @if (Model != null)
+        {
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">比赛编号</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">比赛名字</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">比赛开始时间</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">比赛最大人数</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">比赛组别</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;" scope="col">查看详情</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var events in Model)
+                {
+                <tr>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@events.EventID</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@events.EventName</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@events.EventDate</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@events.MaxParticipants</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">@events.EventGroup</td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;">
+                        <form id="filterForm" action="@Url.Action("AthletesIndex", "User")" method="post">
+                            <input type="button" class="btn btn-primary" value="查看详情" name="@events.EventID" id="@events.EventID" onclick="submitFormAndNavigate('@events.EventID')" />
+                        </form>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+
+        }
+    </table>
+</div>
+
+<script>
+    function submitFormAndNavigate(eventID) {
+        // 构造包含参数的 URL
+        var url = '/User/AthletesIndex';
+
+        // 获取表单元素
+        var form = document.getElementById('filterForm');
+
+        // 将表单 action 设置为所需的 URL
+        form.action = url;
+
+        // 提交表单
+        form.submit();
+
+        // 导航到包含参数的 URL
+        window.location.href = url;
+    }
+</script>
+
+

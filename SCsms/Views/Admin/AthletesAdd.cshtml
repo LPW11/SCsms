@@ -1,0 +1,44 @@
+﻿@model SCsms.Models.Athletes
+
+@{
+    ViewBag.Title = "运动员信息添加";
+    Layout = "~/Views/Shared/_BackAdmin.cshtml";
+}
+
+<div style="margin-top: 50px; text-align: center;">
+    <form action="/Admin/AthletesAdd" method="post" onsubmit="return checkForm()">
+        <table style="border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;">运动员编号</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;">项目编号</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;">运动员名字</th>
+                    <th style="border: 1px solid #dee2e6; padding: 10px;">运动员性别</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;"><input type="text" name="AthleteID" value="" class="form-control" /></td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;"><input type="text" name="EventID" value="" class="form-control" /></td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;"><input type="text" name="UserName" value="" class="form-control" /></td>
+                    <td style="border: 1px solid #dee2e6; padding: 10px;"><input type="text" name="Sex" value="" class="form-control" /></td>
+                </tr>
+            </tbody>
+
+            <tr>
+                <th style="text-align:center;">
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="添加" />
+                    </div>
+                    <h3 style="color:red;">@ViewBag.notice</h3>
+                </th>
+            </tr>
+        </table>
+    </form>
+
+
+</div>
+<script>
+
+
+</script>

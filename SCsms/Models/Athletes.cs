@@ -23,6 +23,7 @@ namespace SCsms.Models
         public int AthleteID { get; set; }
         public Nullable<int> EventID { get; set; }
         public string UserName { get; set; }
+        public string Sex { get; set; }
     
         public virtual Events Events { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

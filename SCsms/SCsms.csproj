@@ -128,8 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +192,9 @@
     <Content Include="Models\SwimDB.edmx.diagram">
       <DependentUpon>SwimDB.edmx</DependentUpon>
     </Content>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -216,6 +221,26 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_BackAdmin.cshtml" />
+    <Content Include="Views\Admin\AthletesIndex.cshtml" />
+    <Content Include="Views\Admin\EventsIndex.cshtml" />
+    <Content Include="Views\Admin\EventsAdd.cshtml" />
+    <Content Include="Views\Admin\AthletesAdd.cshtml" />
+    <Content Include="Views\Admin\ResultsAdd.cshtml" />
+    <Content Include="Views\Admin\Athletes_reg.cshtml" />
+    <Content Include="Views\Admin\Athletes_UD.cshtml" />
+    <Content Include="Views\Admin\AthletesUpdate.cshtml" />
+    <Content Include="Views\Admin\Events_UD.cshtml" />
+    <Content Include="Views\Admin\EventsUpdate.cshtml" />
+    <Content Include="Views\Admin\Account_inq.cshtml" />
+    <Content Include="Views\Admin\AccountUpdate.cshtml" />
+    <Content Include="Views\Admin\AccountsAdd.cshtml" />
+    <Content Include="Views\Shared\_FrontUser.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\AthletesIndex.cshtml" />
+    <Content Include="Views\User\EventsIndex.cshtml" />
+    <Content Include="Views\User\Athletes_reg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

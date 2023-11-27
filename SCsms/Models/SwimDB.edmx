@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SCsmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SCsmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Athletes">
           <Key>
             <PropertyRef Name="AthleteID" />
@@ -12,6 +12,7 @@
           <Property Name="AthleteID" Type="int" Nullable="false" />
           <Property Name="EventID" Type="int" />
           <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Sex" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -19,8 +20,9 @@
           </Key>
           <Property Name="EventID" Type="int" Nullable="false" />
           <Property Name="EventName" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="EventDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="MaxParticipants" Type="int" Nullable="false" />
+          <Property Name="EventGroup" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Results">
           <Key>
@@ -29,7 +31,8 @@
           <Property Name="ResultID" Type="int" Nullable="false" />
           <Property Name="EventID" Type="int" />
           <Property Name="AthleteID" Type="int" />
-          <Property Name="ResultTime" Type="time" Precision="7" />
+          <Property Name="Pre_Time" Type="time" Precision="1" />
+          <Property Name="Fin_Time" Type="time" Precision="1" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -94,8 +97,7 @@
             <End Role="Results" EntitySet="Results" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCsmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -108,6 +110,7 @@
           <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Events" Relationship="Self.FK__Athletes__EventI__4E88ABD4" FromRole="Athletes" ToRole="Events" />
           <NavigationProperty Name="Results" Relationship="Self.FK__Results__Athlete__52593CB8" FromRole="Athletes" ToRole="Results" />
+          <Property Name="Sex" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -115,10 +118,11 @@
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" />
           <Property Name="EventName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EventDate" Type="DateTime" Precision="7" Nullable="false" />
           <Property Name="MaxParticipants" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Athletes" Relationship="Self.FK__Athletes__EventI__4E88ABD4" FromRole="Events" ToRole="Athletes" />
           <NavigationProperty Name="Results" Relationship="Self.FK__Results__EventID__5165187F" FromRole="Events" ToRole="Results" />
+          <Property Name="EventGroup" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Results">
           <Key>
@@ -127,9 +131,10 @@
           <Property Name="ResultID" Type="Int32" Nullable="false" />
           <Property Name="EventID" Type="Int32" />
           <Property Name="AthleteID" Type="Int32" />
-          <Property Name="ResultTime" Type="Time" Precision="7" />
           <NavigationProperty Name="Athletes" Relationship="Self.FK__Results__Athlete__52593CB8" FromRole="Results" ToRole="Athletes" />
           <NavigationProperty Name="Events" Relationship="Self.FK__Results__EventID__5165187F" FromRole="Results" ToRole="Events" />
+          <Property Name="Pre_Time" Type="Time" Precision="1" />
+          <Property Name="Fin_Time" Type="Time" Precision="1" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -203,6 +208,7 @@
           <EntitySetMapping Name="Athletes">
             <EntityTypeMapping TypeName="SCsmsModel.Athletes">
               <MappingFragment StoreEntitySet="Athletes">
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="AthleteID" ColumnName="AthleteID" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -212,6 +218,7 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="SCsmsModel.Events">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventGroup" ColumnName="EventGroup" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="EventName" ColumnName="EventName" />
                 <ScalarProperty Name="EventDate" ColumnName="EventDate" />
@@ -222,10 +229,11 @@
           <EntitySetMapping Name="Results">
             <EntityTypeMapping TypeName="SCsmsModel.Results">
               <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="Fin_Time" ColumnName="Fin_Time" />
+                <ScalarProperty Name="Pre_Time" ColumnName="Pre_Time" />
                 <ScalarProperty Name="ResultID" ColumnName="ResultID" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="AthleteID" ColumnName="AthleteID" />
-                <ScalarProperty Name="ResultTime" ColumnName="ResultTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

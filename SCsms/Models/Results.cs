@@ -17,7 +17,8 @@ namespace SCsms.Models
         public int ResultID { get; set; }
         public Nullable<int> EventID { get; set; }
         public Nullable<int> AthleteID { get; set; }
-        public Nullable<System.TimeSpan> ResultTime { get; set; }
+        public Nullable<System.TimeSpan> Pre_Time { get; set; }
+        public Nullable<System.TimeSpan> Fin_Time { get; set; }
     
         public virtual Athletes Athletes { get; set; }
         public virtual Events Events { get; set; }
