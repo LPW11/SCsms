@@ -204,8 +204,8 @@ namespace SCsms.Controllers
                     UserName = ac.UserName,
                     Sex = ac.Sex,
                     EventName = ac.EventName,
-                    Pre_Result = (TimeSpan)ac.Pre_Result,
-                    Fin_Result = (TimeSpan)ac.Fin_Result,
+                    Pre_Result = ac.Pre_Result != null ? (TimeSpan)ac.Pre_Result : TimeSpan.Zero,
+                    Fin_Result = ac.Fin_Result != null ? (TimeSpan)ac.Fin_Result : TimeSpan.Zero,
                     Pre_Sta = GetPreStaText(ac.AthleteID, ac.EventID, ac.Pre_Sta),
                     Fin_Ranking = GetFinRankingText(ac.Fin_Result, ac.EventID)
                 })
@@ -328,10 +328,8 @@ namespace SCsms.Controllers
         [HttpPost]
         public ActionResult UpdateIndex(Athletes updatedAthlete)
         {
-            // 获取要更新的书籍
             var existingAthlete = db.Athletes.Find(updatedAthlete.AthleteID);
 
-            // 检查书籍是否存在
             if (existingAthlete == null)
             {
                 ViewBag.notice = "编辑运动员失败，该运动员可能已被删除，请刷新页面获取最新数据。";
