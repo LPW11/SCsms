@@ -312,7 +312,7 @@ public ActionResult EventsAdd()
 
 ### 修改与删除
 
-![20231129140534 00_00_00-00_00_30](C:\Users\lenovo\Desktop\20231129140534 00_00_00-00_00_30.gif)
+![20231129140534 00_00_00-00_00_30](https://lpw11.oss-cn-beijing.aliyuncs.com/img/20231129140534%2000_00_00-00_00_30.gif)
 
 ```c#
         //一张列表+按钮
